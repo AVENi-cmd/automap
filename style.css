@@ -1,6 +1,6 @@
 :root {
   --gold:#cba945;
-  --bg:#090909;
+  --bg:#0a0a0a;
   --surface:#151515;
   --text:#f4f2eb;
   --muted:#a6a59f;
@@ -50,7 +50,7 @@ img {
 
 .header {
   border-bottom:1px solid var(--line);
-  background:#090909
+  background:var(--bg)
 }
 
 .nav {
@@ -1191,3 +1191,55 @@ h2 {
 .flatpickr-calendar.arrowBottom::before,.flatpickr-calendar.arrowBottom::after { border-top-color: #55482b; }
 .flatpickr-calendar .numInputWrapper span.arrowUp::after { border-bottom-color: var(--gold); }
 .flatpickr-calendar .numInputWrapper span.arrowDown::after { border-top-color: var(--gold); }
+
+/* Final visual rhythm: retain the logo-derived gold and original typography. */
+.section { padding-top: 80px; padding-bottom: 80px; }
+.packages-section { padding-bottom: 40px; }
+.hero-grid { gap: 40px; }
+.promo-content { min-height: 380px; padding: 28px; }
+.promo-message { margin-top: 30px; }
+.promo-tag { color: #b5b1a5; }
+.promo-payment { gap: 18px; }
+.branch { background: linear-gradient(145deg, #191816, #121212); box-shadow: 0 8px 24px #0002; }
+.branch-top { margin-bottom: 20px; }
+.branch .branch-address { min-height: 62px; margin: 14px 0 20px; color: #bbb8ae; }
+.branch .phone .contact-label { font-size: 11px; }
+.branch-icon { width: 42px; height: 42px; border-radius: 11px; }
+.package, .booking-panel { border-radius: 14px; }
+.package h3 { font-variant-numeric: tabular-nums; }
+.package li { line-height: 1.75; }
+.booking-field select, .booking-field input { font-size: 16px; }
+.button, .nav-links a, .footer-top a { transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease; }
+@media (hover: hover) {
+  .branch:hover { transform: translateY(-3px); box-shadow: 0 12px 28px #0003; }
+}
+@media (max-width: 700px) {
+  .section { padding-top: 52px; padding-bottom: 52px; }
+  .packages-section { padding-bottom: 28px; }
+  .hero-grid { gap: 28px; }
+  .promo-content { min-height: 320px; padding: 22px; }
+  .promo-message { margin-top: 22px; }
+  .promo-services { padding-top: 76px; font-size: 11px; }
+  .promo-payment { padding: 18px 22px; }
+  .payment-options { width: min(268px, 100%); }
+  .package-image { aspect-ratio: 2.2; max-height: 170px; }
+  .package-body { padding: 16px; }
+  .package-label { font-size: 17px; }
+  .package h3 { font-size: 27px; }
+  .package li { font-size: 13px; line-height: 1.7; margin-bottom: 5px; }
+  .branch .branch-address { min-height: 0; }
+  .floating-wa { bottom: calc(16px + env(safe-area-inset-bottom)); left: 14px; width: 48px; height: 48px; }
+  footer { padding-bottom: 72px; }
+}
+@media (max-width: 360px) {
+  .promo-content { padding: 18px; }
+  .promo-payment { padding: 16px 18px; }
+  .payment-logos { gap: 8px; }
+  .payment-brand { padding: 4px; }
+  .package-label { font-size: 15px; }
+  .package h3 { font-size: 25px; }
+  .package-body { column-gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .branch:hover, .button:hover { transform: none; }
+}
