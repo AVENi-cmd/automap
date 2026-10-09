@@ -1143,3 +1143,32 @@ h2 {
   .payment-logos > span { min-width: 0; flex: 1; }
   .booking-box { padding: 22px; }
 }
+
+/* Compact mobile packages without hiding features or shrinking tap targets. */
+@media (max-width: 700px) {
+  .packages-grid { gap: 18px; }
+  .package-image { aspect-ratio: 2.05; max-height: 190px; }
+  .package-image img { object-position: center; }
+  .package-image .badge { top: 12px; right: 12px; padding: 3px 9px; }
+  .package-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-content: start;
+    gap: 0 14px;
+    padding: 18px;
+  }
+  .package-label { align-self: center; font-size: 18px; margin: 0; }
+  .package h3 { align-self: center; font-size: 28px; white-space: nowrap; }
+  .package h3 span { font-size: 12px; }
+  .package .rule { grid-column: 1 / -1; margin: 14px 0 12px; }
+  .package ul { grid-column: 1 / -1; margin: 0 0 16px; }
+  .package li { font-size: 13px; line-height: 1.65; margin-bottom: 6px; }
+  .package li:last-child { margin-bottom: 0; }
+  .package li .icon { top: 4px; }
+  .package .button { grid-column: 1 / -1; min-height: 48px; padding: 10px 16px; margin-top: 0; }
+}
+@media (max-width: 360px) {
+  .package-body { padding: 16px; column-gap: 10px; }
+  .package-label { font-size: 16px; }
+  .package h3 { font-size: 26px; }
+}
