@@ -29,14 +29,56 @@ function updateSummary() {
   const chosen = packages[packageSelect.value];
   summary.textContent = chosen ? `باقة ${chosen.name} · ${chosen.price} ر.س` : 'اختر باقتك لتجهيز طلب الحجز.';
 }
+function bookingDateIso(value) {
+  const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(value);
+  const iso = match ? `${match[3]}-${match[2]}-${match[1]}` : value;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return null;
+  const [year, month, day] = iso.split('-').map(Number);
+  const parsed = new Date(year, month - 1, day);
+  return parsed.getFullYear() === year && parsed.getMonth() === month - 1 && parsed.getDate() === day ? iso : null;
+}
 function bookingUrl(branchKey, packageKey, date) {
+  date = bookingDateIso(date);
   const branch = branches[branchKey];
   const chosen = packages[packageKey];
-  if (!branch || !chosen || !/^\d{4}-\d{2}-\d{2}$/.test(date) || date < saudiToday()) return null;
+  if (!branch || !chosen || !date || date < saudiToday()) return null;
   const message = `مرحبًا أوتو ماب، أرغب في طلب حجز:\nالفرع: ${branch.name}\nالباقة: ${chosen.name}\nالسعر: ${chosen.price} ر.س\nالتاريخ المفضل: ${date}\nيرجى تأكيد توفر الموعد.`;
   return `https://wa.me/${branch.phone}?text=${encodeURIComponent(message)}`;
 }
-dateInput.min = saudiToday();
+const dateError = document.getElementById('date-error');
+let datePicker = null;
+function syncBookingMinDate() {
+  dateInput.min = saudiToday();
+  if (datePicker) datePicker.set('minDate', saudiToday());
+}
+function calendarEnglish(instance) {
+  instance.calendarContainer.setAttribute('dir', 'ltr');
+  instance.calendarContainer.setAttribute('lang', 'en');
+}
+if (window.flatpickr) {
+  datePicker = window.flatpickr(dateInput, {
+    dateFormat: 'd/m/Y',
+    disableMobile: true,
+    allowInput: false,
+    clickOpens: true,
+    locale: window.flatpickr.l10ns.default,
+    minDate: saudiToday(),
+    ariaDateFormat: 'F j, Y',
+    onReady: (_dates, _text, instance) => calendarEnglish(instance),
+    onOpen: (_dates, _text, instance) => {
+      calendarEnglish(instance);
+      instance.set('minDate', saudiToday());
+    },
+    onChange: () => {
+      dateError.hidden = true;
+      dateInput.removeAttribute('aria-invalid');
+    }
+  });
+}
+syncBookingMinDate();
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) syncBookingMinDate();
+});
 document.querySelectorAll('[data-package]').forEach(link => {
   link.addEventListener('click', () => {
     packageSelect.value = link.dataset.package;
@@ -44,11 +86,18 @@ document.querySelectorAll('[data-package]').forEach(link => {
   });
 });
 packageSelect.addEventListener('change', updateSummary);
-dateInput.addEventListener('focus', () => { dateInput.min = saudiToday(); });
+dateInput.addEventListener('focus', syncBookingMinDate);
 form.addEventListener('submit', event => {
   event.preventDefault();
-  dateInput.min = saudiToday();
+  syncBookingMinDate();
   if (!form.reportValidity()) return;
   const url = bookingUrl(branchSelect.value, packageSelect.value, dateInput.value);
-  if (url) window.location.assign(url);
+  if (!url) {
+    dateError.hidden = false;
+    dateInput.setAttribute('aria-invalid', 'true');
+    dateInput.focus();
+    if (datePicker) datePicker.open();
+    return;
+  }
+  window.location.assign(url);
 });
