@@ -25,6 +25,10 @@ function saudiToday() {
   const value = type => parts.find(part => part.type === type).value;
   return `${value('year')}-${value('month')}-${value('day')}`;
 }
+function saudiMinDate() {
+  const [year, month, day] = saudiToday().split('-').map(Number);
+  return new Date(year, month - 1, day);
+}
 function updateSummary() {
   const chosen = packages[packageSelect.value];
   summary.textContent = chosen ? `باقة ${chosen.name} · ${chosen.price} ر.س` : 'اختر باقتك لتجهيز طلب الحجز.';
@@ -49,7 +53,7 @@ const dateError = document.getElementById('date-error');
 let datePicker = null;
 function syncBookingMinDate() {
   dateInput.min = saudiToday();
-  if (datePicker) datePicker.set('minDate', saudiToday());
+  if (datePicker) datePicker.set('minDate', saudiMinDate());
 }
 function calendarEnglish(instance) {
   instance.calendarContainer.setAttribute('dir', 'ltr');
@@ -62,12 +66,12 @@ if (window.flatpickr) {
     allowInput: false,
     clickOpens: true,
     locale: window.flatpickr.l10ns.default,
-    minDate: saudiToday(),
+    minDate: saudiMinDate(),
     ariaDateFormat: 'F j, Y',
     onReady: (_dates, _text, instance) => calendarEnglish(instance),
     onOpen: (_dates, _text, instance) => {
       calendarEnglish(instance);
-      instance.set('minDate', saudiToday());
+      instance.set('minDate', saudiMinDate());
     },
     onChange: () => {
       dateError.hidden = true;
