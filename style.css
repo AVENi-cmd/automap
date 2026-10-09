@@ -1038,3 +1038,6 @@ h2 {
 
 /* Preserve the service activity in the documentary hero image. */
 .hero-visual > img { object-fit: contain; }
+
+/* Keep service details and wall branding visible on every screen size. */
+.package-image { aspect-ratio: 3 / 2; }

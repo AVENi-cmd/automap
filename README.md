@@ -20,6 +20,8 @@ Shared prompt: authentic documentary-style 3:2 automotive workshop photography; 
 - Gold: silver Toyota Land Cruiser 300; technician fits a clear PPF sheet across the entire hood, with front fender and bumper visible.
 - Diamond: white Nissan Patrol Y62; technician fits PPF to a closed passenger door, with a nearby protective film roll, representing full-body protection.
 
+The approved service images were then edited with the supplied AUTOMAP logo reference: matte charcoal wall signage with the exact logo, a restrained gold `#CBA945` wall stripe or tool trolley trim, with vehicle geometry, service activity and neutral lighting preserved. Package images retain a 3:2 aspect ratio at all screen widths.
+
 Each image and the stylesheet use a content hash in their URLs to avoid mixing cached and updated assets. Every SVG also has intrinsic dimensions.
 
 Prices and branch contacts are supplied by the client. Diamond feature corrected to «نانو جنوط» based on the uploaded banner. «الأكثر طلبًا» is a proposed preview badge, subject to client confirmation.
