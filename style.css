@@ -508,15 +508,7 @@ h2 span {
   margin-bottom:11px
 }
 
-.package li:before {
-  content:'✓';
-  position:absolute;
-  right:0;
-  color:var(--gold);
-  font-family:Arial,sans-serif;
-  font-size:12px;
-  top:3px
-}
+.package li:before { content: none; }
 
 .package .button {
   margin-top:auto;
@@ -921,4 +913,125 @@ h2 {
 }
 
 
+}
+
+/* Consistent line icons and refined branch cards. */
+.icon {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+.icon-whatsapp { fill: currentColor; }
+.nav-cta { display: inline-flex; align-items: center; gap: 16px; }
+.nav-cta .icon { color: var(--gold); }
+.hero-bottom a { display: inline-flex; align-items: center; gap: 16px; }
+.hero-bottom .icon, .text-link .icon { color: var(--gold); width: 17px; height: 17px; }
+.package li .icon { position: absolute; right: 0; top: 5px; width: 13px; height: 13px; color: var(--gold); }
+.branch {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 28px 24px 24px;
+  border: 1px solid rgba(203, 169, 69, .18);
+  border-radius: 15px;
+  background: radial-gradient(ellipse at 100% 0, rgba(203, 169, 69, .075), transparent 65%), linear-gradient(145deg, #191916, #121212);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .16);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.branch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 24px;
+  width: 42px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 0 0 3px 3px;
+}
+.branch-top { margin-bottom: 25px; gap: 14px; }
+.branch-icon {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  background: linear-gradient(135deg, rgba(203,169,69,.15), rgba(203,169,69,.035));
+  border: 1px solid rgba(203,169,69,.22);
+  border-radius: 13px;
+}
+.branch-top .icon { width: 23px; height: 23px; }
+.branch-index { color: #939084; font-size: 10px; letter-spacing: 1.1px; direction: ltr; }
+.branch h3 { font-size: 22px; }
+.branch-divider { width: 26px; height: 1px; background: rgba(203,169,69,.6); margin-top: 15px; }
+.branch .branch-address { line-height: 1.95; color: #b5b3a9; min-height: 82px; margin: 16px 0 24px; }
+.branch-actions { margin-top: auto; }
+.branch .phone {
+  border: 1px solid rgba(255,255,255,.075);
+  background: rgba(255,255,255,.025);
+  border-radius: 9px;
+  padding: 12px;
+  min-height: 65px;
+  gap: 10px;
+  flex-wrap: nowrap;
+  transition: background .2s, border-color .2s;
+}
+.contact-icon { display: grid; place-items: center; color: var(--gold); }
+.phone-detail { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+.branch .phone .contact-label { font-size: 10px; color: #a9a69a; }
+.branch .phone bdi { font-size: 14px; color: #f4f2eb; letter-spacing: .7px; text-align: right; }
+.branch .phone > .icon { width: 15px; height: 15px; color: #a9a69a; }
+.branch .map-link {
+  justify-content: flex-start;
+  gap: 9px;
+  border: 1px solid rgba(203,169,69,.23);
+  border-radius: 9px;
+  background: rgba(203,169,69,.045);
+  padding: 12px;
+  min-height: 46px;
+  margin-top: 11px;
+  font-size: 12px;
+  transition: background .2s, border-color .2s;
+}
+.map-link span { flex: 1; }
+.map-link .icon { width: 17px; height: 17px; }
+.map-link .icon:last-child { width: 14px; height: 14px; }
+@media (hover: hover) {
+  .branch:hover { transform: translateY(-5px); border-color: rgba(203,169,69,.48); box-shadow: 0 18px 35px rgba(0,0,0,.25); }
+  .branch .phone:hover { background: rgba(255,255,255,.05); border-color: rgba(203,169,69,.3); }
+  .branch .map-link:hover { background: rgba(203,169,69,.12); border-color: rgba(203,169,69,.5); }
+}
+@media (max-width: 700px) {
+  .nav-cta { display: none; }
+  .branches-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .branch { padding: 22px 18px 18px; border-radius: 13px; }
+  .branch::before { right: 18px; }
+  .branch-top { margin-bottom: 20px; gap: 8px; }
+  .branch-icon { width: 42px; height: 42px; border-radius: 11px; }
+  .branch-index { font-size: 8px; letter-spacing: .5px; }
+  .branch h3 { font-size: 20px; }
+  .branch .branch-address { min-height: 90px; font-size: 13px; margin-bottom: 20px; }
+  .branch .phone { padding: 10px; gap: 8px; }
+  .branch .phone bdi { font-size: 12px; letter-spacing: .3px; }
+  .branch .phone > .icon { display: none; }
+  .branch .map-link { font-size: 11px; padding: 11px 9px; gap: 7px; }
+  .branch .map-link .icon:last-child { display: none; }
+}
+@media (max-width: 540px) {
+  .branches-grid { grid-template-columns: 1fr; }
+  .branch { padding: 24px; }
+  .branch::before { right: 24px; }
+  .branch-top { margin-bottom: 20px; }
+  .branch-icon { width: 46px; height: 46px; }
+  .branch-index { font-size: 10px; letter-spacing: 1px; }
+  .branch .branch-address { min-height: 0; font-size: 14px; margin-bottom: 24px; }
+  .branch .phone bdi { font-size: 15px; }
+  .branch .phone > .icon { display: block; }
+  .branch .map-link { font-size: 13px; padding: 12px; gap: 10px; }
+  .branch .map-link .icon:last-child { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .branch, .branch .phone, .branch .map-link { transition: none; }
+  .branch:hover { transform: none; }
 }
