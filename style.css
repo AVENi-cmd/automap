@@ -1079,7 +1079,6 @@ h2 {
 .promo-scene::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg,#000 0%,rgba(0,0,0,.83) 20%,rgba(0,0,0,.22) 55%,#0b0b0b 100%); }
 .promo-content { min-height: 410px; padding: 28px; display: flex; flex-direction: column; }
 .promo-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-.promo-top .logo { width: 176px; flex-shrink: 0; }
 .promo-tag { font: 9px Arial,sans-serif; letter-spacing: 1.6px; color: #aaa69a; }
 .promo-message { margin-top: 24px; }
 .promo-message > p { font-size: 12px; color: #cfccc3; margin: 0 0 8px; }
@@ -1160,7 +1159,6 @@ h2 {
 }
 @media (max-width: 400px) {
   .promo-content { padding: 20px; min-height: 340px; }
-  .promo-top .logo { width: 154px; }
   .promo-tag { font-size: 8px; letter-spacing: 1px; }
   .promo-message h2 { font-size: 28px; }
   .promo-payment { padding: 16px 20px; gap: 14px; }
