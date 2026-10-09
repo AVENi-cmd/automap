@@ -1035,3 +1035,6 @@ h2 {
   .branch, .branch .phone, .branch .map-link { transition: none; }
   .branch:hover { transform: none; }
 }
+
+/* Preserve the service activity in the documentary hero image. */
+.hero-visual > img { object-fit: contain; }
