@@ -1041,3 +1041,25 @@ h2 {
 
 /* Keep service details and wall branding visible on every screen size. */
 .package-image { aspect-ratio: 3 / 2; }
+
+/* A restrained warm grade connects workshop photography to the dark gold identity. */
+.hero-visual > img,
+.package-image > img {
+  filter: brightness(.82) contrast(1.06) saturate(.72) sepia(.12);
+}
+.package-image::after,
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(135deg,
+    rgba(203, 169, 69, .10) 0%,
+    rgba(9, 9, 9, .07) 50%,
+    rgba(9, 9, 9, .24) 100%);
+}
+.package-image .badge,
+.package-image .package-number { z-index: 2; }
+.hero-visual::after { z-index: 2; }
+.hero-visual .visual-caption { z-index: 3; }
