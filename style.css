@@ -1063,3 +1063,83 @@ h2 {
 .package-image .package-number { z-index: 2; }
 .hero-visual::after { z-index: 2; }
 .hero-visual .visual-caption { z-index: 3; }
+
+/* A typography-led campaign banner, with original payment brand marks. */
+.promo-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 460px;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  border: 1px solid rgba(203,169,69,.3);
+  border-radius: 16px;
+  background: radial-gradient(ellipse at 0 0,rgba(203,169,69,.15),transparent 65%), #10100f;
+}
+.promo-banner::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 160px;
+  height: 600px;
+  left: -105px;
+  top: -120px;
+  transform: rotate(-32deg);
+  border: 1px solid rgba(203,169,69,.3);
+  box-shadow: 20px 0 0 rgba(203,169,69,.035),40px 0 0 rgba(203,169,69,.03);
+}
+.promo-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.promo-top .logo { width: 190px; flex-shrink: 0; }
+.promo-tag { font-size: 11px; color: var(--muted); }
+.promo-message > p { font-size: 13px; margin: 0 0 12px; color: var(--muted); }
+.promo-message h2 { font-size: clamp(28px,2.7vw,39px); font-weight: 800; line-height: 1.6; }
+.promo-message h2 span { color: var(--gold); }
+.promo-line { width: 48px; height: 2px; background: var(--gold); margin-top: 23px; }
+.promo-payment { border-top: 1px solid var(--line); padding-top: 22px; }
+.payment-label { color: var(--gold); font-size: 11px; }
+.promo-payment p { margin: 3px 0 15px; font-size: 15px; }
+.payment-logos { display: flex; gap: 12px; align-items: center; }
+.payment-logos > span { display: flex; align-items: center; justify-content: center; min-width: 126px; height: 48px; background: #fff; border-radius: 7px; padding: 10px 14px; }
+.payment-logos img { object-fit: contain; flex: none; }
+.packages-section { padding-bottom: 48px; }
+.booking-section { padding: 0 0 100px; scroll-margin-top: 30px; }
+.booking-box { border: 1px solid rgba(203,169,69,.3); border-radius: 16px; background: linear-gradient(120deg,rgba(203,169,69,.035),transparent 55%),var(--surface); padding: 42px; display: grid; grid-template-columns: .85fr 1.15fr; gap: 60px; }
+.booking-intro h2 { font-size: 28px; }
+.booking-intro h2 span { color: var(--gold); }
+.booking-intro > p:not(.eyebrow) { color: var(--muted); font-size: 14px; margin: 20px 0; }
+.booking-note { display: block; color: var(--muted); font-size: 12px; border-right: 2px solid var(--gold); padding-right: 12px; }
+.booking-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.booking-field { min-width: 0; }
+.booking-field label { display: block; font-weight: 500; font-size: 14px; margin-bottom: 8px; }
+.booking-field select,.booking-field input { display: block; width: 100%; min-width: 0; height: 52px; border: 1px solid #45433c; background: #10100f; color: var(--text); border-radius: 6px; padding: 10px 12px; font: inherit; font-size: 14px; color-scheme: dark; }
+.booking-field select { cursor: pointer; }
+.booking-field select:focus-visible,.booking-field input:focus-visible,button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.booking-date { grid-column: 1 / -1; }
+.booking-date input { text-align: right; }
+.booking-field small { display: block; color: var(--muted); font-size: 11px; margin-top: 6px; }
+.booking-summary { font-size: 13px; color: var(--gold); min-height: 24px; margin: 20px 0 14px; }
+.booking-submit { width: 100%; cursor: pointer; font-family: inherit; }
+@media (max-width: 1000px) {
+  .booking-box { gap: 32px; padding: 30px; }
+}
+@media (max-width: 700px) {
+  .promo-banner { min-height: 390px; padding: 28px; gap: 28px; }
+  .promo-message h2 { font-size: 32px; }
+  .booking-box { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
+  .booking-intro h2 { font-size: 26px; }
+  .booking-section { padding-bottom: 64px; }
+  .booking-fields { grid-template-columns: 1fr; gap: 18px; }
+  .booking-submit { font-size: 14px; gap: 12px; padding: 14px 16px; }
+}
+@media (max-width: 400px) {
+  .promo-banner { padding: 22px; }
+  .promo-top .logo { width: 158px; }
+  .promo-tag { display: none; }
+  .promo-message h2 { font-size: 27px; }
+  .payment-logos > span { min-width: 0; flex: 1; }
+  .booking-box { padding: 22px; }
+}
